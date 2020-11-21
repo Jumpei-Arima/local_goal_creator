@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<launch>
+    <arg name="hz" default="10"/>
+    <arg name="world_frame" default="map"/>
+    <arg name="robot_frame" default="base_link"/>
+    <arg name="goal_dis_tolerance" default="1.0"/>
+    <arg name="goal_yaw_tolerance" default="1.0"/>
+    <arg name="timeout" default="180"/>
+    <arg name="use_waypoints" default="false"/>
+    <arg name="waypoints_path" default="$(find local_goal_creator)/waypoints/waypoints.json"/>
+
+    <node name="local_goal_creator" pkg="local_goal_creator" type="local_goal_creator.py" output="screen">
+        <param name="HZ" value="$(arg hz)"/>
+        <param name="WORLD_FRAME" value="$(arg world_frame)"/>
+        <param name="ROBOT_FRAME" value="$(arg robot_frame)"/>
+        <param name="GOAL_DIS_TOLERANCE" value="$(arg goal_dis_tolerance)"/>
+        <param name="GOAL_YAW_TOLERANCE" value="$(arg goal_yaw_tolerance)"/>
+        <param name="TIMEOUT" value="$(arg timeout)"/>
+        <param name="USE_WAYPOINTS" value="$(arg use_waypoints)"/>
+        <param name="WAYPOINTS_PATH" value="$(arg waypoints_path)"/>
+    </node>
+
+</launch>
