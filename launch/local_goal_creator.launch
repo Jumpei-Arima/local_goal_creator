@@ -6,8 +6,9 @@
     <arg name="goal_dis_tolerance" default="1.0"/>
     <arg name="goal_yaw_tolerance" default="1.0"/>
     <arg name="timeout" default="180"/>
-    <arg name="use_waypoints" default="false"/>
+    <arg name="use_waypoints" default="true"/>
     <arg name="waypoints_path" default="$(find local_goal_creator)/waypoints/waypoints.json"/>
+    <arg name="random_patrol" default="true"/>
 
     <node name="local_goal_creator" pkg="local_goal_creator" type="local_goal_creator.py" output="screen">
         <param name="HZ" value="$(arg hz)"/>
@@ -18,6 +19,7 @@
         <param name="TIMEOUT" value="$(arg timeout)"/>
         <param name="USE_WAYPOINTS" value="$(arg use_waypoints)"/>
         <param name="WAYPOINTS_PATH" value="$(arg waypoints_path)"/>
+        <param name="RANDOM_PATROL" value="$(arg random_patrol)"/>
     </node>
 
 </launch>

@@ -24,6 +24,7 @@ class LocalGoalCreator:
         self.GOAL_YAW_TOLERANCE = rospy.get_param("~GOAL_YAW_TOLERANCE", 1.0)
         self.TIMEOUT = rospy.get_param("~TIMEOUT", 180)
         self.USE_WAYPOINTS = rospy.get_param("~USE_WAYPOINTS")
+        self.RANDOM_PATROL = rospy.get_param("~RANDOM_PATROL")
         if self.USE_WAYPOINTS:
             WAYPOINTS_PATH = rospy.get_param("~WAYPOINTS_PATH")
             with open(WAYPOINTS_PATH) as f:
@@ -75,7 +76,10 @@ class LocalGoalCreator:
                         print("==== goal!!! ====")
                     print("time: ", time)
                     if self.USE_WAYPOINTS:
-                        self.idx = self.idx+1 if self.idx<len(self.waypoints)-1 else 0
+                        if self.RANDOM_PATROL:
+                            self.idx = random.randint(0,len(self.waypoints)-1)
+                        else:
+                            self.idx = self.idx+1 if self.idx<len(self.waypoints)-1 else 0
                         self.goal = self.create_goal(self.idx)
                         print("next goal: [%d] " % self.idx)
                         print(self.goal)
